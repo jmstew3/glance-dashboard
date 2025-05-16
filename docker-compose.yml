@@ -1,44 +1,23 @@
-version: '3'
-
 services:
-  portainer:
-    image: portainer/portainer-ce:latest
-    container_name: portainer
-    restart: always
-    ports:
-      - "9000:9000"
+  glance:
+    container_name: glance
+    image: glanceapp/glance
+    restart: unless-stopped
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - portainer_data:/data
-    networks:
-      - dashboard-network
-
-  traefik:
-    image: traefik:v2.9
-    container_name: traefik
-    restart: always
-    command:
-      - "--api.insecure=true"
-      - "--providers.docker=true"
-      - "--providers.docker.exposedbydefault=false"
-      - "--entrypoints.web.address=:80"
-      - "--entrypoints.websecure.address=:443"
-    ports:
-      - "80:80"
-      - "443:443"
-      - "8080:8080"
-    volumes:
+      - ./glance/config:/app/config
+      - ./glance/assets:/app/assets
+      # Mount docker socket to enable the docker containers widget
       - /var/run/docker.sock:/var/run/docker.sock:ro
     networks:
-      - dashboard-network
+      - traefik-general
+    expose:
+      - "8080"
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.traefik.rule=Host(`traefik.localhost`)"
-      - "traefik.http.routers.traefik.service=api@internal"
+      - "traefik.http.routers.glance.rule=Host(`glance.tawson.top`)"
+      - "traefik.http.routers.glance.entrypoints=web,websecure"
+      - "traefik.http.services.glance.loadbalancer.server.port=8080"
 
 networks:
-  dashboard-network:
-    driver: bridge
-
-volumes:
-  portainer_data:
+  traefik-general:
+    external: true
