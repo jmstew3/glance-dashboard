@@ -3,6 +3,7 @@
 /playground
 /.idea
 /glance*.yml
+/config/glance.yml
 
 # Docker volumes
 /data
