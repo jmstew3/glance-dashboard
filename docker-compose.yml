@@ -1,0 +1,23 @@
+services:
+  glance:
+    container_name: glance
+    image: glanceapp/glance
+    restart: unless-stopped
+    volumes:
+      - ./config:/app/config
+      - ./assets:/app/assets
+      # Mount docker socket to enable the docker containers widget
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    networks:
+      - traefik-general
+    expose:
+      - "8080"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.glance.rule=Host(`glance.tawson.top`)"
+      - "traefik.http.routers.glance.entrypoints=web,websecure"
+      - "traefik.http.services.glance.loadbalancer.server.port=8080"
+
+networks:
+  traefik-general:
+    external: true
