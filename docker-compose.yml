@@ -3,6 +3,8 @@ services:
     container_name: glance
     image: glanceapp/glance
     restart: unless-stopped
+    environment:
+      - CONFIG_FILE=${GLANCE_CONFIG_FILE:-glance.yml}
     volumes:
       - ./config:/app/config
       - ./assets:/app/assets

@@ -449,26 +449,37 @@ This repository contains a configuration for running Glance dashboard with Traef
 - **Traefik Integration**: Secure access with Traefik reverse proxy
 - **Customizable**: Easy configuration through YAML files
 - **Responsive**: Works on desktop and mobile devices
+- **Environment Variables**: Configure Glance using environment variables
 
 ## Prerequisites
 
 - Docker and Docker Compose
 - Traefik setup with a network named `traefik-general`
-- A domain or subdomain for accessing the dashboard (configured as `glance.tawson.top` by default)
+- A domain or subdomain for accessing the dashboard (configured as `glance.nostaw.top` by default)
 
 ## Directory Structure
 
 ```
 docker-dashboard/
 ├── docker-compose.yml          # Docker Compose configuration
-├── .gitignore                  # Git ignore file
+├── .env                        # Environment variables
+├── .env.example                # Example environment variables
 ├── README.md                   # This documentation
-└── glance/                     # Glance-specific files
-    ├── config/                 # Configuration directory 
-    │   └── glance.yml          # Main Glance configuration
-    └── assets/                 # Custom assets
-        └── user.css            # Custom CSS styling
+├── config/                     # Configuration directory 
+│   ├── glance.yml              # Main Glance configuration
+│   └── glance.example.yml      # Example configuration file
+└── assets/                     # Custom assets
+    └── user.css                # Custom CSS styling
 ```
+
+## Environment Variables
+
+The project uses environment variables to configure certain aspects:
+
+- `GLANCE_HOSTNAME`: The hostname for Traefik routing (default: `glance.nostaw.top`)
+- `GLANCE_CONFIG_FILE`: The configuration file to use (default: `glance.yml`)
+
+These variables are defined in the `.env` file and referenced in `docker-compose.yml`.
 
 ## Setup Instructions
 
@@ -478,18 +489,21 @@ docker-dashboard/
    cd docker-dashboard
    ```
 
-2. Configure your domain in `docker-compose.yml` if needed (default is `glance.tawson.top`)
+2. Copy `.env.example` to `.env` and customize:
+   ```bash
+   cp .env.example .env
+   ```
 
-3. Customize the Glance configuration in `config/glance.yml` as needed
+3. Edit the `.env` file to set your domain name and other configuration options
 
-4. Add any custom styling in `glance/assets/user.css`
+4. Customize the Glance configuration in `config/glance.yml` as needed, using `config/glance.example.yml` as a reference
 
 5. Start the service:
    ```bash
    docker-compose up -d
    ```
 
-6. Access your dashboard at https://glance.tawson.top (or your configured domain)
+6. Access your dashboard at your configured domain (e.g., https://glance.nostaw.top)
 
 ## Configuration
 

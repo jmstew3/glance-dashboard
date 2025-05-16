@@ -1,0 +1,86 @@
+# Example configuration file for Glance dashboard
+# Copy this file to glance.yml and modify as needed
+
+title: "Example Dashboard"
+theme:
+  name: dark
+  primary-color: 220 80 50
+  secondary-color: 210 75 65
+  background-color: 210 15 15
+  card-background-color: 220 15 20
+
+pages:
+  - name: Home
+    columns:
+      - size: small
+        widgets:
+          - type: calendar
+            first-day-of-week: monday
+
+          - type: to-do
+
+          - type: weather
+            location: "Your City, Country"
+            latitude: 0.0
+            longitude: 0.0
+            units: imperial  # or metric
+            hour-format: 12h  # or 24h
+
+          - type: repository
+            repository: username/repository
+            pull-requests-limit: 5
+            issues-limit: 3
+            commits-limit: 3
+
+      - size: full
+        widgets:
+          - type: docker-containers
+            show-stopped: true
+          
+          - type: server-stats
+            include-docker: true
+
+          - type: group
+            widgets:
+              - type: reddit
+                subreddit: technology
+              - type: reddit
+                subreddit: programming
+                show-thumbnails: true
+              - type: reddit
+                subreddit: news
+                show-thumbnails: true
+
+      - size: small
+        widgets:
+          - type: clock
+            timezone: "local"
+            hour-format: 12h
+
+          - type: bookmarks
+            groups:
+              - links:
+                  - title: Gmail
+                    url: https://mail.google.com/
+                  - title: Search Engine
+                    url: https://www.google.com/
+                  - title: Github
+                    url: https://github.com/
+                  - title: Wikipedia
+                    url: https://en.wikipedia.org/
+              - title: Entertainment
+                color: 10 70 50
+                links:
+                  - title: Streaming Service 1
+                    url: https://www.example.com/streaming1
+                  - title: Streaming Service 2
+                    url: https://www.example.com/streaming2
+                  - title: YouTube
+                    url: https://www.youtube.com/
+              - title: Social
+                color: 200 50 50
+                links:
+                  - title: Social Site 1
+                    url: https://www.example.com/social1
+                  - title: Social Site 2
+                    url: https://www.example.com/social2
