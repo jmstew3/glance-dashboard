@@ -14,7 +14,7 @@ services:
       - "8080"
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.glance.rule=Host(`glance.tawson.top`)"
+      - "traefik.http.routers.glance.rule=Host(`${GLANCE_HOSTNAME}`)"
       - "traefik.http.routers.glance.entrypoints=web,websecure"
       - "traefik.http.services.glance.loadbalancer.server.port=8080"
 
