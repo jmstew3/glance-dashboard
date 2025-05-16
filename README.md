@@ -434,7 +434,7 @@ docker push owner/glance:latest
 ## Thank you
 
 To all the people who were generous enough to [sponsor](https://github.com/sponsors/glanceapp) the project and to everyone who has contributed in any way, be it PRs, submitting issues, helping others in the discussions or Discord server, creating guides and tools or just mentioning Glance on social media. Your support is greatly appreciated and helps keep the project going.
-=======
+
 # Glance Dashboard
 
 A self-hosted dashboard for quick access to information and services, powered by [Glance](https://github.com/glanceapp/glance) and Traefik.
@@ -480,7 +480,7 @@ docker-dashboard/
 
 2. Configure your domain in `docker-compose.yml` if needed (default is `glance.tawson.top`)
 
-3. Customize the Glance configuration in `glance/config/glance.yml` as needed
+3. Customize the Glance configuration in `config/glance.yml` as needed
 
 4. Add any custom styling in `glance/assets/user.css`
 
@@ -493,7 +493,7 @@ docker-dashboard/
 
 ## Configuration
 
-The main configuration file is located at `glance/config/glance.yml`. Refer to the [Glance documentation](https://github.com/glanceapp/glance/tree/main/docs) for detailed configuration options.
+The main configuration file is located at `config/glance.yml`. Refer to the [Glance documentation](https://github.com/glanceapp/glance/tree/main/docs) for detailed configuration options.
 
 ### Example Configuration
 
@@ -517,7 +517,7 @@ You can customize the appearance by editing `glance/assets/user.css`.
 
 ### Adding Widgets
 
-Edit `glance/config/glance.yml` to add or modify widgets. Available widgets include:
+Edit `config/glance.yml` to add or modify widgets. Available widgets include:
 - Docker containers
 - System monitoring
 - RSS feeds
@@ -536,10 +536,9 @@ docker-compose up -d
 ## Troubleshooting
 
 - **Dashboard not loading**: Check if Traefik is running and properly configured
-- **Widgets not displaying properly**: Verify the configuration in `glance/config/glance.yml`
+- **Widgets not displaying properly**: Verify the configuration in `config/glance.yml`
 - **Docker containers not showing**: Make sure the Docker socket is properly mounted
 
 ## License
 
 This setup uses Glance, which is licensed under the MIT License. See [Glance's LICENSE](https://github.com/glanceapp/glance/blob/main/LICENSE) for details.
->>>>>>> 4730aa209828b54ce6974d17cbe866d978001b69
