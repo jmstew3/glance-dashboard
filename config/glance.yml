@@ -21,7 +21,7 @@ pages:
             location: "Charlotte, United States"
             latitude: 35.22709
             longitude: -80.84313
-            units: metric
+            units: imperial
             hour-format: 12h
 
           - type: repository
